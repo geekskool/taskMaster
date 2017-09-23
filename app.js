@@ -28,11 +28,18 @@ app.get(routes.tasks, function (req, res) {
 })
 
 app.get(routes.task, function (req, res) {
-//  res.sendFile('Ind Task Page'+ req.params.id);
+  res.render('task', {task_id:req.params.id, task_title:'task one', })
+});
 
-//  res.sendFile('static/html/task.html', {root: __dirname} )
-  res.render('task', {task_id:req.params.id, task_title:'task one'})
-
+app.post(routes.task, function (req, res) {
+  let task_id = req.params.id
+  let title = req.params.title
+  let desc = req.params.desc
+  let status = req.params.status
+  let assignBy = req.params.assgnBy
+  let createdOn = req.params.createdOn
+  let dueDate = req.params.dueDate
+  res.send('task', {task_id:req.params.id, task_title:'task one', })
 });
 
 app.get(routes.socketenter, function (req, res) {
