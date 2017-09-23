@@ -25,7 +25,11 @@ app.get(routes.tasks, function(req, res) {
 });
 
 app.get(routes.task, function(req, res) {
-  res.send('Ind Task Page'+ req.params.id);
+//  res.sendFile('Ind Task Page'+ req.params.id);
+  
+  res.sendFile('static/html/task.html', {root: __dirname} )
+
+
 });
 
 app.get(routes.socketenter, function(req, res) {
