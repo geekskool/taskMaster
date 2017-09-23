@@ -13,7 +13,7 @@ const data = {
       title: 'some sting',
       desc: 'task desc',
       status: 'new',
-      assgnBy: 'boss',
+      assgnBy: 'boas',
       assgnTo: 'xyz',
       createdOn: '2017-09-23T09:47:48',
       dueDate: '2017-09-23T09:47:48'
