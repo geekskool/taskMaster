@@ -1,7 +1,9 @@
 html
   head
+    title Create task
   body
-    form(action='/createTask' method='POST')
+    h3 Create task
+    form(method='POST')
       div Name
         input(type='text', name='title')
       div Description
@@ -10,4 +12,4 @@ html
         input(type='text', name='assignedTo')
       div Due date
         input(type='text', name='dueDate')
-      button.btn.btn-primary(type='submit') Submit
+      input(type='submit')
