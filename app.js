@@ -40,6 +40,18 @@ app.get(routes.register, function (req, res) {
   res.render('register', {})
 })
 
+app.post(routes.register, function (req, res) {
+  if(!helper.sanitize(req.body)) {
+    res.send(helper.displayError('All fields required', req.body))
+  }
+  const username = req.body.username
+  const password = req.body.password
+  // change it with appropriate db reg function
+  console.log(username, password)
+  res.redirect('/dashboard')
+})
+
+
 app.get(routes.dashboard, function (req, res) {
   res.render('dashboard', data)
 })
@@ -50,7 +62,7 @@ app.get(routes.createtask, function (req, res) {
 
 app.post(routes.createtask, function (req, res) {
   if(!helper.sanitize(req.body))
-    res.send(helper.displayError('All fields are required',  req.body);
+    res.send(helper.displayError('All fields are required',  req.body));
 
   data[data] = {}
   ++counter
