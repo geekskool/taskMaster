@@ -2,6 +2,15 @@ html
   head
     title= title
   body
+  select(name='filters')
+    option(value='')
+    option(value='New') New
+    option(value='InProgress') inprogress
+    option(value='Closed') closed
+    option(value='Cancelled') cancelled
+    option(value='assgnBy') assgnBy
+    option(value='assgnTo') assgnTo
+    option(value='dueDate') dueDate
   table
     thead
       tr

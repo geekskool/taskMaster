@@ -4,10 +4,13 @@ const bodyParser = require("body-parser")
 
 const path = require('path')
 const routes = require('./myRoutes.js')
+
 const data = require('./data/tasks')
 
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
+
+let counter = 0
 app.use(bodyParser.urlencoded({
   extended: true
 }))
@@ -33,12 +36,18 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  res.send({
-    name: req.body.title,
-    desc: req.body.description,
-    assignedto: req.body.assignedTo,
-    duedate: req.body.dueDate
-  })
+  tasks[tasks] = {}
+  ++counter
+  tasks['tasks'][counter] = {
+    title: req.body.title,
+    desc: req.body.desc,
+    status: 'new',
+    assgnBy: 'current',
+    assgnTo: req.body.assgnTo,
+    createdOn: new Date().toISOString(),
+    dueDate: req.body.dueDate
+  }
+  res.redirect('/dashboard')
 })
 
 app.get(routes.tasks, function (req, res) {
