@@ -28,7 +28,7 @@ app.get(routes.register, function (req, res) {
 })
 
 app.get(routes.dashboard, function (req, res) {
-  res.render('dashboard', tasks)
+  res.render('dashboard', data)
 })
 
 app.get(routes.createtask, function (req, res) {
@@ -36,9 +36,8 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  tasks[tasks] = {}
-  ++counter
-  tasks['tasks'][counter] = {
+++counter
+  data['tasks'][counter] = {
     title: req.body.title,
     desc: req.body.desc,
     status: 'new',
