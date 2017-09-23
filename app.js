@@ -56,6 +56,8 @@ app.get(routes.tasks, function (req, res) {
 
 app.get(routes.task, function (req, res) {
   tasksJson = data.tasks[req.params.id]
+  console.log(tasksJson)
+  if(tasksJson === undefined) throw 'Invalid Task ID'
   res.render('task', tasksJson)
 });
 
