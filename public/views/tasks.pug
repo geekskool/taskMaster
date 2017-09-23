@@ -2,9 +2,31 @@ html
   head
     title= title
   body
-    h1= message
-    ul
-      for task in tasks.tasks
-        li= task.title
-      else
-        li sorry, no books!
+  select(name='filters')
+    option(value='')
+    option(value='New') New
+    option(value='InProgress') inprogress
+    option(value='Closed') closed
+    option(value='Cancelled') cancelled
+    option(value='assgnBy') assgnBy
+    option(value='assgnTo') assgnTo
+    option(value='dueDate') dueDate
+  table
+    thead
+      tr
+        th Id
+        th Title
+        th Status
+        th AssignedTo
+        th AssignedBy
+        th DueDate
+    tbody
+      for task in tasks
+        tr
+          td
+            a(href='/task/'+task.id) #{task.id}
+          td=task.title
+          td=task.status
+          td=task.assgnBy
+          td=task.assgnTo
+          td=task.dueDate

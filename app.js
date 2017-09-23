@@ -4,7 +4,9 @@ const bodyParser = require("body-parser")
 
 const path = require('path')
 const routes = require('./myRoutes.js')
-const tasks = require('./data/tasks')
+
+const data = require('./data/tasks')
+
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 
@@ -26,8 +28,8 @@ app.get(routes.register, function (req, res) {
 })
 
 app.get(routes.dashboard, function (req, res) {
-  res.render('dashboard', tasks);
-});
+  res.render('dashboard', tasks)
+})
 
 app.get(routes.createtask, function (req, res) {
   res.render('createtask', {})
@@ -49,24 +51,25 @@ app.post(routes.createtask, function (req, res) {
 })
 
 app.get(routes.tasks, function (req, res) {
-  res.render('tasks', {
-    title: 'tasks',
-    message: 'Hello',
-    tasks: tasks
-  })
+  res.render('tasks', {title: 'tasks', message: 'Hello', tasks: data.tasks})
 })
 
 app.get(routes.task, function (req, res) {
-  //  res.sendFile('Ind Task Page'+ req.params.id);
-
-  //  res.sendFile('static/html/task.html', {root: __dirname} )
-  res.render('task', {
-    task_id: req.params.id,
-    task_title: 'task one'
-  })
-
+  tasksJson = data.tasks[req.params.id]
+  console.log(tasksJson)
+  res.render('task', tasksJson)
 });
 
+// app.post(routes.task, function (req, res) {
+//   let task_id = req.params.id
+//   let title = req.params.title
+//   let desc = req.params.desc
+//   let status = req.params.status
+//   let assignBy = req.params.assgnBy
+//   let createdOn = req.params.createdOn
+//   let dueDate = req.params.dueDate
+//   res.send('task', {task_id:req.params.id, task_title:'task one'})
+// });
 app.get(routes.socketenter, function (req, res) {
   res.send('Socket Send Test Page')
 })
