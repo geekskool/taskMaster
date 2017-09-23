@@ -6,6 +6,6 @@ const routes = {
   task: '/task/:id',
   socketenter: '/socketenter',
   socketreceive: '/socketreceive'
-};
+}
 
-module.exports = routes;
+module.exports = routes
