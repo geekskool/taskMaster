@@ -35,13 +35,15 @@ app.get(routes.dashboard, function (req, res) {
 })
 
 app.get(routes.createtask, function (req, res) {
-  res.render('createtask', {})
+  res.render('createTask', {})
 })
 
 app.post(routes.createtask, function (req, res) {
   if(!helper.sanitize(req.body)) {
     res.send({error: 'error', msg: 'All input fields are required', body: req.body})
   }
+
+data[data] = {}
 ++counter
   data['tasks'][counter] = {
     title: req.body.title,
