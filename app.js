@@ -25,12 +25,23 @@ app.get(routes.login, function (req, res) {
   res.render('login', {})
 })
 
+app.post(routes.login, function (req, res) {
+  if(!helper.sanitize(req.body)) {
+    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
+  }
+  const username = req.body.username;
+  const password = req.body.password;
+  if (helper.authenticate(username, password))
+    res.redirect('/dashboard');
+  else
+    res.send({error: 'login-error', msg: 'Incorrect Username/Password'});
+})
+
 app.get(routes.register, function (req, res) {
   res.render('register', {})
 })
 
 app.get(routes.dashboard, function (req, res) {
-  console.log(helper)
   res.render('dashboard', data)
 })
 
