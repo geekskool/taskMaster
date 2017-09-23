@@ -26,15 +26,14 @@ app.get(routes.login, function (req, res) {
 })
 
 app.post(routes.login, function (req, res) {
-  if(!helper.sanitize(req.body)) {
-    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
-  }
+  if(!helper.sanitize(req.body))
+    res.send(helper.displayError('All input fields are required', req.body));
   const username = req.body.username;
   const password = req.body.password;
   if (helper.authenticate(username, password))
     res.redirect('/dashboard');
   else
-    res.send({error: 'login-error', msg: 'Incorrect Username/Password'});
+    res.send(helper.displayError('Username/Password incorrect', req.body))
 })
 
 app.get(routes.register, function (req, res) {
@@ -50,12 +49,11 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  if(!helper.sanitize(req.body)) {
-    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
-  }
+  if(!helper.sanitize(req.body))
+    res.send(helper.displayError('All fields are required',  req.body);
 
-data[data] = {}
-++counter
+  data[data] = {}
+  ++counter
   data['tasks'][counter] = {
     title: req.body.title,
     desc: req.body.desc,

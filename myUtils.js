@@ -12,9 +12,16 @@ function authenticate(username, password) {
   return false
 }
 
+function displayError(errMsg, errData) {
+  if (errData)
+    return {error_message: errMsg, data: errData}
+  return {error_message: errMsg}
+}
+
 const utilFuns = {
   sanitize: sanitize,
-  authenticate: authenticate
+  authenticate: authenticate,
+  displayError: displayError
 }
 
 module.exports = utilFuns;
