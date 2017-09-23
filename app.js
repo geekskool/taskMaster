@@ -3,7 +3,7 @@ const app = express()
 
 const path = require('path')
 const routes = require('./myRoutes.js')
-app.set('views', path.join(__dirname, 'static/html'))
+app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 
 app.get('/', function (req, res) {
