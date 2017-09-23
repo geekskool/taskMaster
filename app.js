@@ -4,6 +4,7 @@ const bodyParser = require("body-parser")
 
 const path = require('path')
 const routes = require('./myRoutes.js')
+const helper = require('./myUtils')
 
 const data = require('./data/tasks')
 
@@ -28,6 +29,7 @@ app.get(routes.register, function (req, res) {
 })
 
 app.get(routes.dashboard, function (req, res) {
+  console.log(helper)
   res.render('dashboard', data)
 })
 
@@ -36,6 +38,9 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
+  if(helper.sanitize(req.body)) {
+    res.send({error: 'error', msg: 'All input fields are required'})
+  }
 ++counter
   data['tasks'][counter] = {
     title: req.body.title,
