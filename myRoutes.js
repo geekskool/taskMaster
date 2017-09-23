@@ -3,7 +3,7 @@ const routes = {
   register: '/register',
   dashboard: '/dashboard',
   tasks: '/tasks',
-  task: '/task',
+  task: '/task/:id',
   socketenter: '/socketenter',
   socketreceive: '/socketreceive'
 }

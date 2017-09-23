@@ -27,7 +27,7 @@ app.get(routes.tasks, function (req, res) {
 })
 
 app.get(routes.task, function (req, res) {
-  res.send('Ind Task Page')
+  res.send('Ind Task Page' + req.params.id)
 })
 
 app.get(routes.socketenter, function (req, res) {
@@ -38,7 +38,6 @@ app.get(routes.socketreceive, function (req, res) {
   res.send('Socket Receive Test Page')
 })
 
-
-app.listen(8000, function() {
+app.listen(8000, function () {
   console.log('app running on 8000')
 })
