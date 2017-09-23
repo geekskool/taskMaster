@@ -4,30 +4,34 @@ html
   body
     h1= task_title
     form(method='POST' action='')
-    
+
+      div.form-group
+        label(for='name') TaskId:
+        input#name.form-control(type='text', placeholder='Id', name='id'  value=(undefined===genre ? '' : genre.name))
+
       div.form-group
         label(for='name') Title:
-        input#name.form-control(type='text', placeholder=title, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='title', name='title'  value=(undefined===genre ? '' : genre.name))
 
       div.form-group
         label(for='name') Description:
-        input#name.form-control(type='text', placeholder=desc, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='desc', name='desc'  value=(undefined===genre ? '' : genre.name))
       
       div.form-group
         label(for='name') Status:
-        input#name.form-control(type='text', placeholder=status, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='status', name='status'  value=(undefined===genre ? '' : genre.name))
 
       div.form-group
         label(for='name') Assigned by:
-        input#name.form-control(type='text', placeholder=assgnBy, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='assgnBy', readonly, name='assgnBy'  value=(undefined===genre ? '' : genre.name))
 
       div.form-group
         label(for='name') Created On:
-        input#name.form-control(type='text', placeholder=createdOn, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='CreatedOn', name='createdOn'  value=(undefined===genre ? '' : genre.name))
 
       div.form-group
         label(for='name') Due Date:
-        input#name.form-control(type='text', placeholder=dueDate, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder='dueDate', name='dueDate'  value=(undefined===genre ? '' : genre.name))
 
       button.btn.btn-primary(type='submit') Update
 

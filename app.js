@@ -46,21 +46,15 @@ app.get(routes.tasks, function (req, res) {
 })
 
 app.get(routes.task, function (req, res) {
-  tasksJson = tasks.tasks[req.params.id]
-  console.log(tasksJson)
+  tasksJson = data.tasks[req.params.id]
   res.render('task', tasksJson)
 });
 
-// app.post(routes.task, function (req, res) {
-//   let task_id = req.params.id
-//   let title = req.params.title
-//   let desc = req.params.desc
-//   let status = req.params.status
-//   let assignBy = req.params.assgnBy
-//   let createdOn = req.params.createdOn
-//   let dueDate = req.params.dueDate
-//   res.send('task', {task_id:req.params.id, task_title:'task one'})
-// });
+app.post(routes.task, function (req, res) {
+  let [task_id, title, desc, status, assignBy, createdOn, dueDate] = [req.body.id, req.body.title, req.body.desc, req.body.status, req.body.assgnBy, req.body.createdOn, req.body.dueDate]
+  console.log(task_id, title, desc, status, assignBy, createdOn, dueDate)
+  // res.send(task_id, title, desc, status, assignBy, createdOn, dueDate)
+});
 app.get(routes.socketenter, function (req, res) {
   res.send('Socket Send Test Page')
 })
