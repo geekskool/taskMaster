@@ -3,6 +3,7 @@ const app = express()
 
 const path = require('path')
 const routes = require('./myRoutes.js')
+const tasks = require('./data/tasks')
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 
@@ -23,12 +24,12 @@ app.get(routes.dashboard, function (req, res) {
 })
 
 app.get(routes.tasks, function (req, res) {
-  res.render('tasks', {title: 'tasks', message: 'Hello'})
+  res.render('tasks', {title: 'tasks', message: 'Hello', tasks: tasks})
 })
 
-app.get(routes.task, function(req, res) {
+app.get(routes.task, function (req, res) {
 //  res.sendFile('Ind Task Page'+ req.params.id);
-  
+
   res.sendFile('static/html/task.html', {root: __dirname} )
 
 });

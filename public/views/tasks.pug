@@ -3,4 +3,8 @@ html
     title= title
   body
     h1= message
-    ul#books
+    ul
+      for task in tasks.tasks
+        li= task.title
+      else
+        li sorry, no books!
