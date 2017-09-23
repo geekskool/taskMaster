@@ -1,0 +1,22 @@
+html
+  head
+  body
+    h1 Dashboard
+    h4 Welcome #{user}
+    div
+      table
+        thead
+          tr
+            th TaskID
+            th Name
+            th Status
+            th AssignedBy
+            th DueDate
+        tbody
+          each val,index in tasks
+            tr
+              td= index
+              td= val.title
+              td= val.status
+              td= val.assgnBy
+              td= val.dueDate
