@@ -4,8 +4,20 @@ html
     h1 Dashboard
     h4 Welcome #{user}
     div
-      each val in tasks
-        h5= val.title
-        p= val.status
-        p= val.dueDate
-        br
+      table
+        thead
+          tr
+            th Slno
+            th Name
+            th Status
+            th AssignedBy
+            th DueDate
+        tbody
+          - var i = 1
+          each val,index in tasks
+            tr
+              td= i++
+              td= val.title
+              td= val.status
+              td= val.assgnBy
+              td= val.dueDate

@@ -1,0 +1,15 @@
+html
+  head
+    title Create task
+  body
+    h3 Create task
+    form(method='POST')
+      div Name
+        input(type='text', name='title')
+      div Description
+        input(type='text', name='description')
+      div Assign to
+        input(type='text', name='assignedTo')
+      div Due date
+        input(type='text', name='dueDate')
+      input(type='submit')
