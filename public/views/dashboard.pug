@@ -2,7 +2,7 @@ html
   head
   body
     h1 Dashboard
-    h4 Welcome #{user}
+    h4 Welcome
     div
       table
         thead
@@ -15,9 +15,10 @@ html
         tbody
           - var i = 1
           each val in tasks
-            tr
-              td= i++
-              td= val.title
-              td= val.status
-              td= val.assgnBy
-              td= val.dueDate
+            if (val.status !== 'closed' && val.status !== 'cancelled')
+              tr
+                td= i++
+                td= val.title
+                td= val.status
+                td= val.assgnBy
+                td= val.dueDate
