@@ -1,5 +1,6 @@
 html
   head
+    link(rel='stylesheet', href='https://unpkg.com/sakura.css/css/sakura.css', type='text/css')
     style.
       /* The Modal (background) */
       .modal {
@@ -43,17 +44,11 @@ html
     div.modal#myModal
       div.modal-content
         span.close ×
-        form(method='POST')
-        div Name
-          input(type='text', name='title')
-        div Description
-          input(type='text', name='desc')
-        div Assign to
-          input(type='text', name='assgnTo')
-        div Due date
-          input(type='text', name='dueDate')
-        input(type='submit')
-      
+        input(type='text', id='title', placeholder='Title')
+        input(type='text', id='assignedTo' placeholder='Assign To')
+        input(type='text', id='dueDate', placeholder='Due Date')
+        input(type='text', id='description', placeholder='Description')
+        input(type='button', id='createTask' value= 'Add')
     div
       table
         thead
