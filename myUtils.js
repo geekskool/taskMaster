@@ -1,10 +1,13 @@
 function sanitize (form) {
-  console.log('---', form)
-  for (i in Object.keys(form)) {
-    if (form[i] == '')
-      return false
-  }
-  return true
+  let keys = Object.keys(form);
+  let val = keys.filter((k) => 
+    form[k] !== '' 
+  )
+  console.log(val)
+  console.log(keys)
+  if(keys.length == val.length)
+    return true
+  return false
 };
 
 const utilFuns = {

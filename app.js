@@ -38,8 +38,8 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  if(helper.sanitize(req.body)) {
-    res.send({error: 'error', msg: 'All input fields are required'})
+  if(!helper.sanitize(req.body)) {
+    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
   }
 ++counter
   data['tasks'][counter] = {
