@@ -5,7 +5,8 @@ const routes = {
   tasks: '/tasks',
   task: '/task/:id',
   socketenter: '/socketenter',
-  socketreceive: '/socketreceive'
+  socketreceive: '/socketreceive',
+  createtask: '/createtask'
 }
 
 module.exports = routes

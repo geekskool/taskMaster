@@ -23,6 +23,10 @@ app.get(routes.dashboard, function(req, res) {
   res.render('dashboard', tasks);
 });
 
+app.get(routes.createtask, function(req, res){
+  res.render('createtask', {})
+})
+
 app.get(routes.tasks, function (req, res) {
   res.render('tasks', {title: 'tasks', message: 'Hello', tasks: tasks})
 })
