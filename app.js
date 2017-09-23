@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const http = require('http').Server(app)
 const bodyParser = require("body-parser")
 
 const path = require('path')
@@ -38,8 +39,8 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  if(helper.sanitize(req.body)) {
-    res.send({error: 'error', msg: 'All input fields are required'})
+  if(!helper.sanitize(req.body)) {
+    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
   }
 ++counter
   data['tasks'][counter] = {
@@ -78,6 +79,8 @@ app.get(routes.socketreceive, function (req, res) {
   res.send('Socket Receive Test Page')
 })
 
-app.listen(8000, function () {
+http.listen(8000, function () {
   console.log('app running on 8000')
 })
+const socket = require('./lib/socketServer')
+socket.listen(http)
