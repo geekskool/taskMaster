@@ -4,10 +4,7 @@ html
   body
     h1= task_title
     form(method='POST' action='')
-      div.form-group
-        label(for='name') Task ID:
-        input#name.form-control(type='number', placeholder=tskId, name='name'  value=(undefined===genre ? '' : genre.name))
-
+    
       div.form-group
         label(for='name') Title:
         input#name.form-control(type='text', placeholder=title, name='name'  value=(undefined===genre ? '' : genre.name))
@@ -26,11 +23,11 @@ html
 
       div.form-group
         label(for='name') Created On:
-        input#name.form-control(type='date', placeholder=createdOn, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder=createdOn, name='name'  value=(undefined===genre ? '' : genre.name))
 
       div.form-group
         label(for='name') Due Date:
-        input#name.form-control(type='date', placeholder=dueDate, name='name'  value=(undefined===genre ? '' : genre.name))
+        input#name.form-control(type='text', placeholder=dueDate, name='name'  value=(undefined===genre ? '' : genre.name))
 
       button.btn.btn-primary(type='submit') Update
 
