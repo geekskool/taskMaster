@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const http = require('http').Server(app)
 const bodyParser = require("body-parser")
 
 const path = require('path')
@@ -78,6 +79,8 @@ app.get(routes.socketreceive, function (req, res) {
   res.send('Socket Receive Test Page')
 })
 
-app.listen(8000, function () {
+http.listen(8000, function () {
   console.log('app running on 8000')
 })
+const socket = require('./lib/chat_server')
+socket.listen(http)
