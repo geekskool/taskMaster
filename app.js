@@ -25,7 +25,7 @@ app.get(routes.tasks, function(req, res) {
 });
 
 app.get(routes.task, function(req, res) {
-  res.send('Ind Task Page');
+  res.send('Ind Task Page'+ req.params.id);
 });
 
 app.get(routes.socketenter, function(req, res) {
