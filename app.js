@@ -18,15 +18,15 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get('/', function (req, res) {
-  res.render('login', {})
+  res.render('homepage', {})
 })
 
 app.get(routes.login, function (req, res) {
-  res.send('Login page')
+  res.render('login', {})
 })
 
 app.get(routes.register, function (req, res) {
-  res.send('Register Page')
+  res.render('register', {})
 })
 
 app.get(routes.dashboard, function (req, res) {
