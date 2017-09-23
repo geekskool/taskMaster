@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get('/', function (req, res) {
-  res.send('something')
+  res.render('login', {})
 })
 
 app.get(routes.login, function (req, res) {
