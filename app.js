@@ -3,7 +3,7 @@ const app = express()
 
 const path = require('path')
 const routes = require('./myRoutes.js')
-const tasks = require('./data/tasks')
+const tasks = require('./data/tasks');
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 
@@ -19,9 +19,9 @@ app.get(routes.register, function (req, res) {
   res.send('Register Page')
 })
 
-app.get(routes.dashboard, function (req, res) {
-  res.send('DashBoard/Home Page')
-})
+app.get(routes.dashboard, function(req, res) {
+  res.render('dashboard', tasks);
+});
 
 app.get(routes.tasks, function (req, res) {
   res.render('tasks', {title: 'tasks', message: 'Hello', tasks: tasks})

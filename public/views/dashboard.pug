@@ -1,0 +1,11 @@
+html
+  head
+  body
+    h1 Dashboard
+    h4 Welcome #{user}
+    div
+      each val in tasks
+        h5= val.title
+        p= val.status
+        p= val.dueDate
+        br
