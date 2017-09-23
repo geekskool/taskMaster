@@ -1,0 +1,13 @@
+html
+  head
+  body
+    form(action='/createTask' method='POST')
+      div Name
+        input(type='text', name='title')
+      div Description
+        input(type='text', name='description')
+      div Assign to
+        input(type='text', name='assignedTo')
+      div Due date
+        input(type='text', name='dueDate')
+      button.btn.btn-primary(type='submit') Submit
