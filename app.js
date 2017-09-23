@@ -30,7 +30,7 @@ app.get(routes.task, function(req, res) {
 //  res.sendFile('Ind Task Page'+ req.params.id);
   
 //  res.sendFile('static/html/task.html', {root: __dirname} )
-  res.render('task', {task_id:1, task_title:'task one'})
+  res.render('task', {task_id:req.params.id, task_title:'task one'})
 
 });
 
