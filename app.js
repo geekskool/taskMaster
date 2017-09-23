@@ -82,5 +82,5 @@ app.get(routes.socketreceive, function (req, res) {
 http.listen(8000, function () {
   console.log('app running on 8000')
 })
-const socket = require('./lib/chat_server')
+const socket = require('./lib/socketServer')
 socket.listen(http)
