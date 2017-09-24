@@ -9,7 +9,8 @@ const routes = require('./myRoutes.js')
 const helper = require('./myUtils')
 
 const data = require('./data/tasks')
-
+// console.log('data = ', data)
+app.use(express.static('public'))
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 
