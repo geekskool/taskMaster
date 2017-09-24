@@ -25,12 +25,34 @@ app.get(routes.login, function (req, res) {
   res.render('login', {})
 })
 
+app.post(routes.login, function (req, res) {
+  if(!helper.sanitize(req.body))
+    res.send(helper.displayError('All input fields are required', req.body));
+  const username = req.body.username;
+  const password = req.body.password;
+  if (helper.authenticate(username, password))
+    res.redirect('/dashboard');
+  else
+    res.send(helper.displayError('Username/Password incorrect', req.body))
+})
+
 app.get(routes.register, function (req, res) {
   res.render('register', {})
 })
 
+app.post(routes.register, function (req, res) {
+  if(!helper.sanitize(req.body)) {
+    res.send(helper.displayError('All fields required', req.body))
+  }
+  const username = req.body.username
+  const password = req.body.password
+  // change it with appropriate db reg function
+  console.log(username, password)
+  res.redirect('/dashboard')
+})
+
+
 app.get(routes.dashboard, function (req, res) {
-  console.log(helper)
   res.render('dashboard', data)
 })
 
@@ -39,12 +61,11 @@ app.get(routes.createtask, function (req, res) {
 })
 
 app.post(routes.createtask, function (req, res) {
-  if(!helper.sanitize(req.body)) {
-    res.send({error: 'error', msg: 'All input fields are required', body: req.body})
-  }
+  if(!helper.sanitize(req.body))
+    res.send(helper.displayError('All fields are required',  req.body));
 
-data[data] = {}
-++counter
+  data[data] = {}
+  ++counter
   data['tasks'][counter] = {
     title: req.body.title,
     desc: req.body.desc,
