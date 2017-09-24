@@ -18,7 +18,21 @@ document.addEventListener('DOMContentLoaded', function () {
     return false
   }
 
-  socket.on('displayData', tasks => {
-
+  socket.on('updateTaskList', task => {
+    updateTable(task)
   })
+
+  const updateTable = (task) => {
+    const taskTable = document.getElementById('taskTable')
+    console.log('taskTable = ', taskTable)
+    let rowCount = taskTable.rows.length
+    console.log('rowCount = ', rowCount)
+    let row = taskTable.insertRow(rowCount)
+    row.insertCell(0).innerHTML = rowCount
+    row.insertCell(1).innerHTML = task.title
+    row.insertCell(1).innerHTML = task.status
+    row.insertCell(2).innerHTML = task.assignedTo
+    row.insertCell(3).innerHTML = task.dueDate
+  }
+
 })
