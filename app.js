@@ -27,13 +27,13 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.get('/', function (req, res) {
+app.get(routes.homepage, function (req, res) {
   res.render('homepage', {})
 })
 
 app.get(routes.login, function (req, res) {
   if(req.session.user !== undefined)
-    return res.redirect('/dashboard')
+    return res.redirect(routes.dashboard)
   res.render('login', {})
 })
 
@@ -44,7 +44,7 @@ app.post(routes.login, function (req, res) {
   const password = req.body.password;
   if (helper.authenticate(username, password)) {
     req.session.user = {username: username}
-    res.redirect('/dashboard');
+    res.redirect(routes.dashboard);
   } else {
     res.send(helper.displayError('Username/Password incorrect', req.body))
   }
@@ -54,7 +54,7 @@ app.get(routes.logout, function (req, res) {
   req.session.destroy(function (err) {
     console.log(helper.displayError("Error while destroying session"));
   })
-  res.redirect('/login');
+  res.redirect(routes.login);
 })
 
 app.get(routes.register, function (req, res) {
@@ -69,7 +69,7 @@ app.post(routes.register, function (req, res) {
   const password = req.body.password
   // change it with appropriate db reg function
   console.log(username, password)
-  res.redirect('/dashboard')
+  res.redirect(routes.dashboard)
 })
 
 
@@ -97,7 +97,7 @@ app.post(routes.createtask, function (req, res) {
     createdOn: new Date().toISOString(),
     dueDate: req.body.dueDate
   }
-  res.redirect('/dashboard')
+  res.redirect(routes.dashboard)
 })
 
 app.get(routes.tasks, function (req, res) {
