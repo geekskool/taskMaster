@@ -50,6 +50,13 @@ app.post(routes.login, function (req, res) {
   }
 })
 
+app.get(routes.logout, function (req, res) {
+  req.session.destroy(function (err) {
+    console.log(helper.displayError("Error while destroying session"));
+  })
+  res.redirect('/login');
+})
+
 app.get(routes.register, function (req, res) {
   res.render('register', {})
 })
