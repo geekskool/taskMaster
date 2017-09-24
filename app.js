@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const http = require('http').Server(app)
-const bodyParser = require("body-parser")
+const bodyParser = require('body-parser')
+const session = require('express-session')
 
 const path = require('path')
 const routes = require('./myRoutes.js')
@@ -11,6 +12,14 @@ const data = require('./data/tasks')
 
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
+
+// session confs
+app.use(session({
+  secret: 'some-very-very-long-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 let counter = 0
 app.use(bodyParser.urlencoded({
@@ -22,6 +31,8 @@ app.get('/', function (req, res) {
 })
 
 app.get(routes.login, function (req, res) {
+  if(req.session.user !== undefined)
+    return res.redirect('/dashboard')
   res.render('login', {})
 })
 
@@ -30,10 +41,12 @@ app.post(routes.login, function (req, res) {
     res.send(helper.displayError('All input fields are required', req.body));
   const username = req.body.username;
   const password = req.body.password;
-  if (helper.authenticate(username, password))
+  if (helper.authenticate(username, password)) {
+    req.session.user = {username: username}
     res.redirect('/dashboard');
-  else
+  } else {
     res.send(helper.displayError('Username/Password incorrect', req.body))
+  }
 })
 
 app.get(routes.register, function (req, res) {
@@ -53,6 +66,7 @@ app.post(routes.register, function (req, res) {
 
 
 app.get(routes.dashboard, function (req, res) {
+  console.log(req.session.user);
   res.render('dashboard', data)
 })
 
