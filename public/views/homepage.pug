@@ -1,0 +1,20 @@
+html
+  head
+    link(rel='stylesheet', href='https://unpkg.com/sakura.css/css/sakura.css', type='text/css')
+
+  body
+    h4 Welcome to Geekskool Taskmaster
+    br
+    input(type='button', id='login' value= 'Login' onClick= login)
+    br 
+    input(type='button', id='reg' value= 'Register' onClick= reg)
+
+    script.
+      var login = document.getElementById('login')
+      var reg = document.getElementById('reg')
+        login.onclick = function() {
+          location.href = "/login";
+        }
+        reg.onclick = function () {
+          location.href = "/register";
+        }

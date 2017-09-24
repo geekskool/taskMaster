@@ -21,7 +21,11 @@
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
     "pug": "^2.0.0-rc.4",
+    "sequelize": "^4.10.2",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {}

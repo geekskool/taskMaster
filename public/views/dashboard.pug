@@ -1,13 +1,72 @@
 html
   head
+    link(rel='stylesheet', href='https://unpkg.com/sakura.css/css/sakura.css', type='text/css')
+    script(src='js/clientSocket.js', type='text/javascript')
+    script(src="/socket.io/socket.io.js", type='text/javascript')
+    style.
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      input.add {
+        margin-left: 8px;
+        color: #fff;
+        background-color: #6385a1;
+      }
+
+      .modal-content-spacing {
+        margin-left: 5px;
+      }
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
   body
     h1 Dashboard
     h4 Welcome
+    button#myBtn Open Modal
+    <a href="/logout">Logout</a>
+    div.modal#myModal
+      div.modal-content
+        span.close ×
+        input.modal-content-spacing(type='text', id='title', placeholder='Title')
+        input.modal-content-spacing(type='text', id='assignedTo' placeholder='Assign To')
+        input.modal-content-spacing(type='text', id='dueDate', placeholder='Due Date')
+        input.modal-content-spacing(type='text', id='description', placeholder='Description')
+        input.modal-content-spacing(type='button', id='createTask' value= 'Add')
+    button#showAll All
     div
-      table
+      table#taskTable
         thead
           tr
-            th Slno
             th Name
             th Status
             th AssignedBy
@@ -16,9 +75,33 @@ html
           - var i = 1
           each val in tasks
             if (val.status !== 'closed' && val.status !== 'cancelled')
-              tr
-                td= i++
+              tr(onclick="updateModal(this)")
                 td= val.title
                 td= val.status
                 td= val.assgnBy
                 td= val.dueDate
+                - i++
+    script.
+      var modal = document.getElementById('myModal');
+      var btn = document.getElementById("myBtn");
+      var span = document.getElementsByClassName("close")[0];
+      console.log(btn)
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      updateModal = function(bl) {
+        document.getElementById('title').value = bl.children[0].innerHTML;
+        document.getElementById('assignedTo').value = bl.children[1].innerHTML;
+        document.getElementById('dueDate').value = bl.children[2].innerHTML;
+        document.getElementById('description').value = bl.children[3].innerHTML;
+        modal.style.display = "block";
+      }
